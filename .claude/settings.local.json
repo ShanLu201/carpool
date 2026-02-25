@@ -1,0 +1,18 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(dir:*)",
+      "Bash(winget install:*)",
+      "Bash(winget search:*)",
+      "Bash(where:*)",
+      "Bash(mysql:*)",
+      "Bash(\"C:\\\\Program Files\\\\MySQL\\\\MySQL Server 8.4\\\\bin\\\\mysql.exe\" -u root -e \"SELECT VERSION\\(\\);\")",
+      "Bash(\"C:\\\\Program Files\\\\MySQL\\\\MySQL Server 8.4\\\\bin\\\\mysql.exe\" -u root -pLsb850427! -e \"CREATE DATABASE IF NOT EXISTS trip CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci; CREATE USER IF NOT EXISTS ''trip_user''@''localhost'' IDENTIFIED BY ''trip_password_123''; GRANT ALL PRIVILEGES ON trip.* TO ''trip_user''@''localhost''; FLUSH PRIVILEGES;\")",
+      "Bash(npm install)",
+      "Bash(npm run dev)",
+      "Bash(node:*)",
+      "Bash(npm:*)",
+      "Bash(curl:*)"
+    ]
+  }
+}
