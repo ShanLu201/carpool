@@ -1,4 +1,4 @@
-import { Layout, Menu, Badge, Avatar, Dropdown, Space } from 'antd';
+import { Layout, Menu, Badge, Avatar, Dropdown, Space, Grid } from 'antd';
 import { Link, Outlet, useLocation, useNavigate } from 'react-router-dom';
 import {
   HomeOutlined,
@@ -13,6 +13,7 @@ import { useAppSelector, useAppDispatch } from '../../hooks';
 import { logout } from '../../store/auth.slice';
 
 const { Header, Content, Footer } = Layout;
+const { useBreakpoint } = Grid;
 
 const MainLayout = () => {
   const location = useLocation();
@@ -20,6 +21,8 @@ const MainLayout = () => {
   const dispatch = useAppDispatch();
   const { user, isAuthenticated } = useAppSelector((state) => state.auth);
   const { unreadCount } = useAppSelector((state) => state.chat);
+  const screens = useBreakpoint();
+  const isMobile = !screens.md;
 
   const handleLogout = () => {
     dispatch(logout());
@@ -79,9 +82,9 @@ const MainLayout = () => {
 
   return (
     <Layout className="layout">
-      <Header style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '0 40px' }}>
+      <Header style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: isMobile ? '0 12px' : '0 40px' }}>
         <div style={{ display: 'flex', alignItems: 'center' }}>
-          <Link to="/" style={{ color: 'white', fontSize: 20, fontWeight: 600, marginRight: 40 }}>
+          <Link to="/" style={{ color: 'white', fontSize: 20, fontWeight: 600, marginRight: isMobile ? 16 : 40 }}>
             拼车平台
           </Link>
           <Menu
@@ -103,7 +106,7 @@ const MainLayout = () => {
         </div>
         <div>{userMenu}</div>
       </Header>
-      <Content style={{ padding: '24px 40px', minHeight: 'calc(100vh - 134px)' }}>
+      <Content style={{ padding: isMobile ? '16px 12px' : '24px 40px', minHeight: 'calc(100vh - 134px)' }}>
         {location.pathname === '/' && (
           <div className="page-header">
             <h1>欢迎使用拼车平台</h1>

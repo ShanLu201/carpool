@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from 'react';
 import { useParams, useNavigate, useLocation } from 'react-router-dom';
-import { Input, Button, Avatar, message, Empty, Spin } from 'antd';
+import { Input, Button, Avatar, message, Empty, Spin, Grid } from 'antd';
 import { ArrowLeftOutlined, SendOutlined } from '@ant-design/icons';
 import { formatDateTime } from '../../utils/date';
 import chatService from '../../services/chat.service';
@@ -9,12 +9,15 @@ import { useAppSelector, useAppDispatch, useWebSocket } from '../../hooks';
 import { setCurrentChatUserId, setMessages, markAsRead } from '../../store/chat.slice';
 
 const ChatRoom = () => {
+  const { useBreakpoint } = Grid;
   const { userId } = useParams<{ userId: string }>();
   const navigate = useNavigate();
   const location = useLocation();
   const dispatch = useAppDispatch();
   const { user } = useAppSelector((state) => state.auth);
   const { messages, typingUsers } = useAppSelector((state) => state.chat);
+  const screens = useBreakpoint();
+  const isMobile = !screens.md;
   const { sendMessage, markAsRead: markAsReadWs, setTyping, isConnected } = useWebSocket();
 
   const [inputValue, setInputValue] = useState('');
@@ -103,23 +106,26 @@ const ChatRoom = () => {
         <Button
           icon={<ArrowLeftOutlined />}
           onClick={() => navigate('/chat')}
-          style={{ margin: 16 }}
+          style={{ margin: isMobile ? 12 : 16 }}
+          size={isMobile ? 'small' : 'middle'}
         >
           返回列表
         </Button>
-        <div style={{ padding: '0 16px' }}>
-          <h3>聊天对象</h3>
+        <div style={{ padding: isMobile ? '0 12px 12px' : '0 16px' }}>
+          {!isMobile && <h3>聊天对象</h3>}
           {otherUser && (
-            <div className="user-info" style={{ marginTop: 16 }}>
+            <div className="user-info" style={{ marginTop: isMobile ? 0 : 16 }}>
               {otherUser.avatar_url ? (
-                <Avatar src={otherUser.avatar_url} size={48} />
+                <Avatar src={otherUser.avatar_url} size={isMobile ? 40 : 48} />
               ) : (
-                <Avatar size={48} style={{ backgroundColor: '#52c41a' }}>
+                <Avatar size={isMobile ? 40 : 48} style={{ backgroundColor: '#52c41a' }}>
                   {otherUser.real_name?.charAt(0) || '用'}
                 </Avatar>
               )}
               <div>
-                <div style={{ fontWeight: 600 }}>{otherUser.real_name || `用户${targetUserId}`}</div>
+                <div style={{ fontWeight: 600, fontSize: isMobile ? 14 : 16 }}>
+                  {otherUser.real_name || `用户${targetUserId}`}
+                </div>
                 <div style={{ fontSize: 12, color: '#999' }}>
                   {isConnected ? '在线' : '离线'}
                 </div>
@@ -145,7 +151,7 @@ const ChatRoom = () => {
                   <div
                     key={msg.id}
                     className={`message ${isOwn ? 'own' : 'other'}`}
-                    style={{ display: 'flex', gap: 12, alignItems: 'flex-end' }}
+                    style={{ display: 'flex', gap: isMobile ? 8 : 12, alignItems: 'flex-end' }}
                   >
                     {renderAvatar(msg)}
                     <div>
@@ -158,7 +164,7 @@ const ChatRoom = () => {
                 );
               })}
               {typingUsers.has(targetUserId) && (
-                <div className="message other" style={{ display: 'flex', gap: 12, alignItems: 'flex-end' }}>
+                <div className="message other" style={{ display: 'flex', gap: isMobile ? 8 : 12, alignItems: 'flex-end' }}>
                   {otherUser?.avatar_url ? (
                     <Avatar src={otherUser.avatar_url} />
                   ) : (

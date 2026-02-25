@@ -54,7 +54,7 @@ const ChatList = () => {
         renderItem={(contact) => (
           <List.Item
             onClick={() => handleChat(contact.user_id)}
-            style={{ cursor: 'pointer', padding: '16px 24px' }}
+            style={{ cursor: 'pointer', padding: '12px 16px' }}
           >
             <List.Item.Meta
               avatar={renderAvatar(contact)}
@@ -67,8 +67,8 @@ const ChatList = () => {
                 </div>
               }
               description={
-                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                  <Text ellipsis style={{ maxWidth: 200, color: '#666' }}>
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: 8 }}>
+                  <Text ellipsis style={{ flex: 1, minWidth: 0, color: '#666' }}>
                     {contact.last_message}
                   </Text>
                   <Badge count={contact.unread_count} showZero={false}>

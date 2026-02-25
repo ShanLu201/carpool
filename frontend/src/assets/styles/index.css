@@ -158,6 +158,35 @@ body {
   }
 }
 
+@media (max-width: 768px) {
+  .chat-container {
+    height: calc(100vh - 56px);
+    flex-direction: column;
+  }
+
+  .chat-sidebar {
+    width: 100%;
+    border-right: none;
+    border-bottom: 1px solid #f0f0f0;
+  }
+
+  .chat-messages {
+    padding: 12px;
+  }
+
+  .chat-input {
+    padding: 12px;
+  }
+
+  .message {
+    max-width: 88%;
+  }
+
+  .message-bubble {
+    padding: 10px 12px;
+  }
+}
+
 .user-info {
   display: flex;
   align-items: center;
