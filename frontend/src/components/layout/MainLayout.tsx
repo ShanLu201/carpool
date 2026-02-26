@@ -84,7 +84,17 @@ const MainLayout = () => {
     <Layout className="layout">
       <Header style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: isMobile ? '0 12px' : '0 40px' }}>
         <div style={{ display: 'flex', alignItems: 'center' }}>
-          <Link to="/" style={{ color: 'white', fontSize: 20, fontWeight: 600, marginRight: isMobile ? 16 : 40 }}>
+          <Link
+            to="/"
+            style={{
+              color: 'white',
+              fontSize: isMobile ? 16 : 20,
+              fontWeight: 600,
+              marginRight: isMobile ? 12 : 40,
+              whiteSpace: 'nowrap',
+              lineHeight: 1,
+            }}
+          >
             拼车平台
           </Link>
           <Menu
@@ -108,10 +118,10 @@ const MainLayout = () => {
       </Header>
       <Content style={{ padding: isMobile ? '16px 12px' : '24px 40px', minHeight: 'calc(100vh - 134px)' }}>
         {location.pathname === '/' && (
-          <div className="page-header">
-            <h1>欢迎使用拼车平台</h1>
-            <p style={{ color: '#666', marginTop: 8 }}>
-              乘客可以发布用车需求，车主可以发布邀客信息，轻松找到合适的出行伙伴
+          <div className="page-header" style={isMobile ? { padding: '12px 0', marginBottom: 12 } : undefined}>
+            <h1 style={isMobile ? { fontSize: 20, marginBottom: 4 } : undefined}>欢迎使用拼车平台</h1>
+            <p style={{ color: '#666', marginTop: isMobile ? 4 : 8, fontSize: isMobile ? 13 : 14, lineHeight: 1.5 }}>
+              乘客发布需求，车主发布邀客，快速匹配同行。
             </p>
           </div>
         )}
