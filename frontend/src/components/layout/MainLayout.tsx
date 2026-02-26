@@ -46,9 +46,9 @@ const MainLayout = () => {
       </Space>
     </Dropdown>
   ) : (
-    <Space size={isMobile ? 8 : 16} style={{ whiteSpace: 'nowrap' }}>
-      <Link to="/login" style={{ display: 'inline-block' }}>登录</Link>
-      <Link to="/register" style={{ display: 'inline-block' }}>
+    <Space size={isMobile ? 6 : 16} style={{ whiteSpace: 'nowrap', flexShrink: 0 }}>
+      <Link to="/login" style={{ display: 'inline-block', fontSize: isMobile ? 13 : 14 }}>登录</Link>
+      <Link to="/register" style={{ display: 'inline-block', fontSize: isMobile ? 13 : 14 }}>
         注册
       </Link>
     </Space>
@@ -82,8 +82,8 @@ const MainLayout = () => {
 
   return (
     <Layout className="layout">
-      <Header style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: isMobile ? '0 12px' : '0 40px' }}>
-        <div style={{ display: 'flex', alignItems: 'center' }}>
+      <Header style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: isMobile ? '0 8px' : '0 40px' }}>
+        <div style={{ display: 'flex', alignItems: 'center', minWidth: 0 }}>
           <Link
             to="/"
             style={{
@@ -101,6 +101,7 @@ const MainLayout = () => {
             theme="dark"
             mode="horizontal"
             selectedKeys={[getActiveKey()]}
+            style={isMobile ? { minWidth: 0, flex: 1 } : undefined}
             items={menuItems.map((item) => ({
               key: item.key,
               icon: item.key === '/chat' ? (

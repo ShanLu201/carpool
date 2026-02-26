@@ -14,7 +14,7 @@ const featureCards = [
     key: 'driver',
     title: '发布邀客信息',
     desc: '车主发布空座信息，快速找到同行乘客。',
-    icon: <CarOutlined rotate={90} style={{ fontSize: 36, color: '#52c41a' }} />,
+    icon: <CarOutlined style={{ fontSize: 36, color: '#52c41a' }} />,
     to: '/driver/publish',
   },
   {
@@ -47,7 +47,7 @@ const Home = () => {
             <Button type="primary" size={isMobile ? 'middle' : 'large'} icon={<CarOutlined />}>
               <Link to="/passenger">查看乘客需求</Link>
             </Button>
-            <Button type="primary" size={isMobile ? 'middle' : 'large'} icon={<CarOutlined rotate={90} />}>
+            <Button type="primary" size={isMobile ? 'middle' : 'large'} icon={<CarOutlined />}>
               <Link to="/driver">查看车主邀客</Link>
             </Button>
             <Button size={isMobile ? 'middle' : 'large'} icon={<UserOutlined />}>
