@@ -46,9 +46,9 @@ const MainLayout = () => {
       </Space>
     </Dropdown>
   ) : (
-    <Space>
-      <Link to="/login">登录</Link>
-      <Link to="/register" style={{ marginLeft: 16 }}>
+    <Space size={isMobile ? 8 : 16} style={{ whiteSpace: 'nowrap' }}>
+      <Link to="/login" style={{ display: 'inline-block' }}>登录</Link>
+      <Link to="/register" style={{ display: 'inline-block' }}>
         注册
       </Link>
     </Space>
